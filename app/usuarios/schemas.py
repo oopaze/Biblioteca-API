@@ -1,0 +1,1 @@
+from app.configuracao.ma import ma
