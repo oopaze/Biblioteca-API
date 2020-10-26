@@ -20,12 +20,12 @@ def create_app():
     from app.autores.routes import autor
     from app.biblioteca.routes import biblioteca
     from app.livros.routes import livro
-    from app.usuarios.routes import usuario
+    from app.usuarios.routes import user
 
-    app.register_blueprint(autor, prefix='/autor')
-    app.register_blueprint(biblioteca, prefix='/biblioteca')
-    app.register_blueprint(livro, prefix='/livro')
-    app.register_blueprint(usuario, prefix='/user')
+    app.register_blueprint(autor, url_prefix='/autor')
+    app.register_blueprint(biblioteca, url_prefix='/biblioteca')
+    app.register_blueprint(livro, url_prefix='/livro')
+    app.register_blueprint(user, url_prefix='/user')
 
     return app
 

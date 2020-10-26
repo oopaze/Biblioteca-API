@@ -3,3 +3,4 @@ set SECRET_KEY="UmaChaveBemSecreta"
 set FLASK_ENV="development"
 flask db init
 flask db migrate
+flask db upgrade
