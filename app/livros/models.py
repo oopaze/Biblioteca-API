@@ -33,6 +33,22 @@ class Livro(db.Model):
         self.disponivel = False
         self.usuario_aluguel.append(usuario)
         db.session.commit()
+    
+    def entregar(self, db):
+        self.disponivel = True
+        self.usuario_alugel = []
+        db.session.commit()
+
+    def adicionar_autor(self, _autores):
+        autores = []
+        for autor in _autores:
+            try:
+                autor_novo = Autor.query.get(autor)
+                autores.append(autor_novo)
+            except Exception:
+                pass
+        
+        self.autores = autores
 
     def __repr__(self):
         return self.titulo

@@ -5,6 +5,7 @@ from app.configuracao.db import db
 from .schemas import LivroSchema
 from .models import Livro
 
+
 livro = Blueprint('livro', __name__)
 
 
@@ -16,9 +17,10 @@ def ver_livros():
 
     if livros:
         dados = livroschema.dump(livros)
-        dados['autores'] = []
-        dados['usuario_aluguel'] = userschema.dump(livros.usuario_aluguel)
-    
+        for i,dado in enumerate(dados):
+            dado['autores'] = []
+            dado['usuario_aluguel'] = userschema.dump(livros[i].usuario_aluguel)
+
     else:
         dados = {
             'message': 'Nenhum livro cadastrado.'
@@ -32,7 +34,7 @@ def ver_livros():
 def ver_livro(id):
     livroschema = LivroSchema()
     userschema = UserSchema()
-    livro = Livro.query.get(id=id)
+    livro = Livro.query.get(id)
 
     if livro:
         dados = livroschema.dump(livro)
@@ -50,27 +52,30 @@ def ver_livro(id):
 def adicionar_livro():
     livroschema = LivroSchema()
     
-    livro = Livro(**request.json)
-    if 'autores' in request.json:
-        livro.autores = request.json['autores']
-        
+
     try:
+        livro = Livro(**request.json)
         db.session.add(livro)
+        
+        if 'autores' in request.json:
+            livro.autores = livro.adicionar_autores(request.json['autores'])
+
         db.session.commit()
 
-        livro = livroschema.dump(livro)
-        livro['autores'] = []
+        dados = livroschema.dump(livro)
+        dados['autores'] = []
+        livro = dados
 
         data = {
-            'message': 'Livro adicionado com sucesso',
+            'message': 'Livro adicionado com sucesso.',
             'data': livro
         }
 
         return jsonify(data), 201
 
-    except ValueError:
+    except (ValueError, TypeError):
         data = {
-            'message': 'Erro ao adicionar livro'
+            'message': 'Erro ao adicionar livro.'
         }
 
         return jsonify(data), 400
@@ -78,8 +83,67 @@ def adicionar_livro():
 
 @livro.route('/<int:id>', methods=['PUT'])
 def atualizar_livro(id):
-    ...
+    livroschema = LivroSchema()
+    livro = Livro.query.get(id)
+
+    if livro:
+        if 'autores' in request.json:
+            livro.adicionar_autor(request.json['autores'])
+        try:
+            livro.titulo = request.json['titulo']
+            livro.vol = request.json['vol']
+
+            db.session.commit()
+
+            dados = {
+                'message': 'Livro atualizado com sucesso.'
+            }
+            dados['data'] = livroschema.dump(livro)
+            dados['data']['autores'] = livro.autores
+            livro = dados
+
+            return jsonify(livro), 200
+
+        except (ValueError, KeyError):
+            dados = {
+                'message': 'Erro ao atualizar livro.'
+            }
+
+        return jsonify(dados), 400
+    
+    dados = {
+        'message': 'Livro não encontrado.'
+    }
+    
+    return jsonify(dados), 404
 
 @livro.route('/<int:id>', methods=['DELETE'])
-def delete_livro():
-    ...
+def delete_livro(id):
+    livroschema = LivroSchema()
+    livro = Livro.query.get(id)
+
+    if livro:
+        try:
+            db.session.delete(livro)
+            db.session.commit()
+
+            dados = {
+                'message': 'Livro deletado com sucesso.'
+            }
+            dados['data'] = livroschema.dump(livro)
+            dados['data']['autores'] = livro.autores
+            livro = dados
+
+            return jsonify(livro), 200
+
+        except (ValueError, TypeError):
+            dados = {
+                'message': 'Erro ao atualizar livro.'
+            }
+
+        return jsonify(dados), 400
+    
+    dados = {
+        'message': 'Livro não encontrado.'
+    }
+    return jsonify(dados), 404
