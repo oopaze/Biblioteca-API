@@ -13,7 +13,7 @@
 3. `user/` - POST - Cria um novo usuário
 4. `user/<int:id>/` - GET - Mostra um único usuário (Somente para Administradores)
 5. `user/<int:id>/` - PUT - Atualiza um único usuário (Somente para Administradores)
-6. `user/password/` - PUT - Atualiza senha de usuário logado (Necessita estar logado)
+6. `user/password/` - PUT - Atualiza senha do usuário logado (Necessita estar logado)
 7. `user/<int:id>/` - DELETE - Deleta um único usuário (Somente para Administradores)
 
 ### Livros
