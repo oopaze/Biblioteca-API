@@ -1,5 +1,5 @@
 from sqlalchemy.exc import StatementError, IntegrityError
-from flask_jwt import jwt_required
+from flask_jwt import current_identity, jwt_required
 from flask import Blueprint, request, jsonify
 
 from app.configuracao.db import db
@@ -28,7 +28,7 @@ def read_users():
 
 
 @user.route('/<int:id>', methods=['GET'])
-@jwt_required()
+@admin_required()
 def read_user(id):
     userschema = UserSchema()
     
@@ -44,6 +44,16 @@ def read_user(id):
         }
 
         return jsonify(dados), 404
+
+@user.route('/voce/', methods=['GET'])
+@jwt_required()
+def read_self_user():
+    userschema = UserSchema()
+    
+    user = current_identity
+    dados = userschema.dump(user)
+
+    return userschema.jsonify(dados), 200
 
 
 @user.route('/', methods=['POST'])
@@ -72,7 +82,7 @@ def create_user():
 
 
 @user.route('/<int:id>', methods=['PUT'])
-@jwt_required()
+@admin_required()
 def update_user(id):
     userschema = UserSchema()
     dados = request.json
@@ -104,6 +114,32 @@ def update_user(id):
             'message':'Erro ao atualizar usuário.'
         }
         return jsonify(dados), 409
+
+
+@user.route('/senha', methods=['PUT'])
+@jwt_required()
+def change_password_user():
+    userschema = UserSchema()
+    dados = request.json
+
+    try:
+        user = current_identity
+        user.password = user.generate_hash_password(dados['password'])
+        db.session.commit()
+        
+        dados = {}
+
+        dados['user'] = userschema.dump(user)
+        dados['message'] = 'Senha atualizada com sucesso.'
+
+        return jsonify(dados), 200
+
+    except (IntegrityError, TypeError):
+        dados = {
+            'message':'Erro ao atualizar senha.'
+        }
+        return jsonify(dados), 409
+
 
 
 @user.route('/<int:id>', methods=['DELETE'])
