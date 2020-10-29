@@ -53,7 +53,6 @@ def ver_livro(id):
 def adicionar_livro():
     livroschema = LivroSchema()
     
-
     try:
         livro = Livro(**request.json)
         db.session.add(livro)
