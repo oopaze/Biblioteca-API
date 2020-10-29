@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify
+from flask_jwt import jwt_required
 
 from app.usuarios.schemas import UserSchema
 from app.configuracao.db import db
@@ -8,8 +9,8 @@ from .models import Livro
 
 livro = Blueprint('livro', __name__)
 
-
 @livro.route('/', methods=['GET'])
+@jwt_required()
 def ver_livros():
     livroschema = LivroSchema(many=True)
     userschema = UserSchema()
@@ -28,9 +29,8 @@ def ver_livros():
 
     return jsonify(dados), 200
 
-
-
 @livro.route('/<int:id>', methods=['GET'])
+@jwt_required()
 def ver_livro(id):
     livroschema = LivroSchema()
     userschema = UserSchema()
@@ -49,6 +49,7 @@ def ver_livro(id):
     return jsonify(dados), 200
 
 @livro.route('/', methods=['POST'])
+@jwt_required()
 def adicionar_livro():
     livroschema = LivroSchema()
     
@@ -80,8 +81,8 @@ def adicionar_livro():
 
         return jsonify(data), 400
     
-
 @livro.route('/<int:id>', methods=['PUT'])
+@jwt_required()
 def atualizar_livro(id):
     livroschema = LivroSchema()
     livro = Livro.query.get(id)
@@ -118,6 +119,7 @@ def atualizar_livro(id):
     return jsonify(dados), 404
 
 @livro.route('/<int:id>', methods=['DELETE'])
+@jwt_required()
 def delete_livro(id):
     livroschema = LivroSchema()
     livro = Livro.query.get(id)

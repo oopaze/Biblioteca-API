@@ -9,8 +9,8 @@ from .schemas import UserSchema
 
 user = Blueprint('user', __name__)
 
-@jwt_required
 @user.route('/', methods=['GET'])
+@jwt_required()
 def read_users():
     userschema = UserSchema(many=True)
     users = User.query.all()
@@ -26,8 +26,8 @@ def read_users():
     return jsonify(dados), 200
 
 
-@jwt_required
 @user.route('/<int:id>', methods=['GET'])
+@jwt_required()
 def read_user(id):
     userschema = UserSchema()
     
@@ -63,15 +63,15 @@ def create_user():
 
         return jsonify(dados), 201
     
-    except ValueError:
+    except (ValueError, IntegrityError):
         dados = {
             'message': 'Usuário já existe.'
         }
         return jsonify(dados), 400
 
 
-@jwt_required
 @user.route('/<int:id>', methods=['PUT'])
+@jwt_required()
 def update_user(id):
     userschema = UserSchema()
     dados = request.json
@@ -105,8 +105,8 @@ def update_user(id):
         return jsonify(dados), 409
 
 
-@jwt_required
 @user.route('/<int:id>', methods=['DELETE'])
+@jwt_required()
 def delete_user(id):
     userschema = UserSchema()
     dados = {}
