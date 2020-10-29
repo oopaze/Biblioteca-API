@@ -1,7 +1,6 @@
 from sqlalchemy.exc import StatementError, IntegrityError
 from flask_jwt import jwt_required
 from flask import Blueprint, request, jsonify
-from flask import json
 
 from app.configuracao.db import db
 from .models import User
@@ -9,8 +8,10 @@ from .schemas import UserSchema
 
 user = Blueprint('user', __name__)
 
+from app.configuracao.auth import admin_required
+
 @user.route('/', methods=['GET'])
-@jwt_required()
+@admin_required()
 def read_users():
     userschema = UserSchema(many=True)
     users = User.query.all()
@@ -106,7 +107,7 @@ def update_user(id):
 
 
 @user.route('/<int:id>', methods=['DELETE'])
-@jwt_required()
+@admin_required()
 def delete_user(id):
     userschema = UserSchema()
     dados = {}
