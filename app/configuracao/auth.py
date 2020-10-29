@@ -1,6 +1,14 @@
-from app.usuarios.models import User
-from flask_jwt import JWT
 from datetime import timedelta
+from functools import wraps
+from flask_jwt import (
+    JWT,
+    JWTError, 
+    _jwt_required, 
+    current_app, 
+    current_identity
+)
+
+from app.usuarios.models import User
 
 
 def authenticate(username, password):
@@ -13,8 +21,6 @@ def identity(payload):
     """Função que mantém o login do usuário"""
     return User.query.filter(User.id == payload['identity']).scalar()
 
-
-
 jwt = JWT(authentication_handler = authenticate, identity_handler = identity)
 
 def configure_auth(app):
@@ -26,3 +32,21 @@ def configure_auth(app):
     app.config['JWT_REFRESH_TOKEN_EXPIRES'] = timedelta(days=30)
 
     return jwt
+
+def admin_required(realm=None):
+    def wrapper(fn):
+        @wraps(fn)
+        def decorator(*args, **kwargs):
+            _jwt_required(realm or current_app.config['JWT_DEFAULT_REALM'])
+            if current_identity.admin:
+                return fn(*args, **kwargs)
+
+            raise JWTError(
+                    'Authorization Required', 
+                    'You are not admin',
+                    headers={
+                       'WWW-Authenticate': 'JWT realm="%s"' %current_app.config['JWT_DEFAULT_REALM']
+                    }
+                )
+        return decorator
+    return wrapper
