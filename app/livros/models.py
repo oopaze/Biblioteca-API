@@ -13,31 +13,22 @@ class Livro(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     titulo = db.Column(db.String)
     vol = db.Column(db.Integer, default=1)
-    disponivel = db.Column(db.Boolean)
+    disponivel = db.Column(db.Boolean, default=True)
 
     autores = db.relationship(Autor, 
                                secondary=autor_livro,
                                backref=db.backref('livros', lazy='dynamic'))
-    usuario_aluguel = db.Column(db.Integer, db.ForeignKey('usuarios.id'))
 
-    criado_em = db.Column(db.DateTime, default=datetime.now)
+    emprestimo_id = db.Column(db.Integer, db.ForeignKey('emprestimos.id'))
+
+    adicionado_em = db.Column(db.DateTime, default=datetime.now)
     atualizado_em = db.Column(db.DateTime, onupdate=datetime.now)
 
-    def __init__(self, titulo, vol, disponivel: bool = True, autores: list = []):
+
+    def __init__(self, titulo, vol, disponivel: bool = True, *args, **kwargs):
         self.titulo = titulo
         self.vol = vol
-        self.autores = autores
         self.disponivel = disponivel
-    
-    def alugar(self, usuario, db):
-        self.disponivel = False
-        self.usuario_aluguel.append(usuario)
-        db.session.commit()
-    
-    def entregar(self, db):
-        self.disponivel = True
-        self.usuario_alugel = []
-        db.session.commit()
 
     def adicionar_autor(self, _autores):
         autores = []
@@ -48,7 +39,8 @@ class Livro(db.Model):
             except Exception:
                 pass
         
-        self.autores = autores
+        return autores
+        
 
     def __repr__(self):
         return self.titulo

@@ -5,6 +5,7 @@ from app.configuracao.auth import admin_required
 from app.configuracao.db import db
 
 from app.usuarios.schemas import UserSchema
+from app.autores.schemas import AutorSchema
 from .schemas import LivroSchema
 from .models import Livro
 
@@ -15,14 +16,13 @@ livro = Blueprint('livro', __name__)
 @jwt_required()
 def ver_livros():
     livroschema = LivroSchema(many=True)
-    userschema = UserSchema()
+    autorschema = AutorSchema(many=True)
     livros = Livro.query.all()
 
     if livros:
         dados = livroschema.dump(livros)
         for i,dado in enumerate(dados):
-            dado['autores'] = []
-            dado['usuario_aluguel'] = userschema.dump(livros[i].usuario_aluguel)
+            dado['autores'] = autorschema.dump(livros[i].autores)
 
     else:
         dados = {
@@ -30,42 +30,45 @@ def ver_livros():
         }
 
     return jsonify(dados), 200
+
 
 @livro.route('/<int:id>', methods=['GET'])
 @jwt_required()
 def ver_livro(id):
     livroschema = LivroSchema()
-    userschema = UserSchema()
     livro = Livro.query.get(id)
+    
+    autorschema = AutorSchema(many=True)
 
     if livro:
         dados = livroschema.dump(livro)
-        dados['autores'] = []
-        dados['usuario_aluguel'] = userschema.dump(livro.usuario_aluguel)
+        dados['autores'] = autorschema.dump(livro.autores)
     
     else:
         dados = {
-            'message': 'Nenhum livro cadastrado.'
+            'message': 'Livro não cadastrado.'
         }
 
     return jsonify(dados), 200
+
 
 @livro.route('/', methods=['POST'])
 @admin_required()
 def adicionar_livro():
     livroschema = LivroSchema()
+    autorschema = AutorSchema(many=True)
     
     try:
         livro = Livro(**request.json)
         db.session.add(livro)
         
         if 'autores' in request.json:
-            livro.autores = livro.adicionar_autores(request.json['autores'])
+            livro.autores = livro.adicionar_autor(request.json['autores'])
 
         db.session.commit()
 
         dados = livroschema.dump(livro)
-        dados['autores'] = []
+        dados['autores'] = autorschema.dump(livro.autores)
         livro = dados
 
         data = {
@@ -81,16 +84,48 @@ def adicionar_livro():
         }
 
         return jsonify(data), 400
+
+
+@livro.route('/varios/', methods=['POST'])
+@admin_required()
+def adicionar_varios_livros():
+    livroschema = LivroSchema()
+    autorschema = AutorSchema(many=True)
+    data = []
+
+    for livro in request.json:
+        _livro = Livro(**livro)
+
+        db.session.add(_livro)
+        db.session.commit()
     
+        if 'autores' in livro:
+            autores = _livro.adicionar_autor(livro['autores'])
+            
+            for autor in autores:
+                _livro.autores.append(autor)
+
+            db.session.commit()
+        
+        dados = livroschema.dump(_livro)
+        dados['autores'] = autorschema.dump(_livro.autores)
+        
+        data.append(dados)
+
+    return jsonify(data), 201
+
+
 @livro.route('/<int:id>', methods=['PUT'])
 @admin_required()
 def atualizar_livro(id):
     livroschema = LivroSchema()
+    autorschema = AutorSchema(many=True)
     livro = Livro.query.get(id)
 
     if livro:
         if 'autores' in request.json:
-            livro.adicionar_autor(request.json['autores'])
+            livro.autores = livro.adicionar_autor(request.json['autores'])
+
         try:
             livro.titulo = request.json['titulo']
             livro.vol = request.json['vol']
@@ -101,7 +136,7 @@ def atualizar_livro(id):
                 'message': 'Livro atualizado com sucesso.'
             }
             dados['data'] = livroschema.dump(livro)
-            dados['data']['autores'] = livro.autores
+            dados['data']['autores'] = autorschema.dump(livro.autores)
             livro = dados
 
             return jsonify(livro), 200
@@ -119,10 +154,12 @@ def atualizar_livro(id):
     
     return jsonify(dados), 404
 
+
 @livro.route('/<int:id>', methods=['DELETE'])
 @admin_required()
 def delete_livro(id):
     livroschema = LivroSchema()
+    autorschema = AutorSchema(many=True)
     livro = Livro.query.get(id)
 
     if livro:
@@ -134,7 +171,7 @@ def delete_livro(id):
                 'message': 'Livro deletado com sucesso.'
             }
             dados['data'] = livroschema.dump(livro)
-            dados['data']['autores'] = livro.autores
+            dados['data']['autores'] = autorschema.dump(livro.autores)
             livro = dados
 
             return jsonify(livro), 200

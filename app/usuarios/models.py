@@ -1,5 +1,6 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.configuracao.db import db
+from app.biblioteca.models import Emprestimo
 
 class User(db.Model):
     __tablename__ = 'usuarios'
@@ -8,6 +9,8 @@ class User(db.Model):
     username = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
     admin = db.Column(db.Boolean, default=False)
+
+    emprestimos = db.relationship(Emprestimo, backref='usuarios', lazy=True)
 
     def __init__(self, name, username, password, admin: bool = None):
         self.name = name
