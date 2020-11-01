@@ -3,7 +3,6 @@
 ## Sumário
 
 * [Sobre](https://github.com/oopaze/Biblioteca-API#sobre)
-* [Desenvolvimento](https://github.com/oopaze/Biblioteca-API#desenvolvimento)
 * [Instalação](https://github.com/oopaze/Biblioteca-API#instalação)
 * [Rotas](https://github.com/oopaze/Biblioteca-API#rotas)
     * [Login](https://github.com/oopaze/Biblioteca-API#login)
@@ -11,6 +10,8 @@
     * [Livros](https://github.com/oopaze/Biblioteca-API#livros)
     * [Autores](https://github.com/oopaze/Biblioteca-API#autores)
     * [Biblioteca](https://github.com/oopaze/Biblioteca-API#biblioteca)
+* [Objetivos](https://github.com/oopaze/Biblioteca-API#objetivos)
+* [Atividades](https://github.com/oopaze/Biblioteca-API#atividades)
 
 ## Sobre
 
