@@ -42,7 +42,7 @@ Dos objetivos a serem atingidos, segue uma pequena tabela explanatória:
 | Controlar o cadastro de usuários, livros e autores | Concluído |
 
 ## Instalação
-```
+```shell
     #Baixando proeto
     git clone https://github.com/oopaze/Biblioteca-API.git
 
