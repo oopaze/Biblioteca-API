@@ -1,35 +1,40 @@
 # BIBLIOTECA-API
 ## Sobre
 
-> O Biblioteca-Fácil é uma API que permitirá auxiliar na gerência de pequenas
-> bibliotecas diminuindo a utilização e preenchimento de protocolos de empréstimos, 
-> facilitando a gestão e melhorando a rotina diária com seus usuários. A idéia do 
-> projeto é poder proporcionar aos usuários uma maior interação com o conteúdo 
-> disponível na biblioteca através de vários mecanismos de busca. 
+O Biblioteca-Fácil é uma API que permitirá auxiliar na gerência de pequenas bibliotecas diminuindo a utilização e preenchimento de protocolos de empréstimos, facilitando a gestão e melhorando a rotina diária com seus usuários. A idéia do  projeto é poder proporcionar aos usuários uma maior interação com o conteúdo disponível na biblioteca através de vários mecanismos de busca. 
 
-> Essa API foi construida usando Flask no seu backend, SQLAlchemy na configuração do 
-> banco de dados, Marshmallow nas serialização dos models e Flask-JWT para o controle 
-> de autenticação. A app conta com dois tipos de autenticação nas rotas, uma para 
-> administradores e outra para usuários, onde o administrador tem acesso a tudo. Ela 
-> usa por padrão SQLite3 como banco de dados, porém ela está preparada para se 
-> conectar a qualquer banco de dados relacional sem que haja erros.
+Essa API foi construida usando Flask no seu backend, SQLAlchemy na configuração do banco de dados, Marshmallow nas serialização dos models e Flask-JWT para o controle de autenticação. A app conta com dois tipos de autenticação nas rotas, uma para administradores e outra para usuários, onde o administrador tem acesso a tudo. Ela usa por padrão SQLite3 como banco de dados, porém se existir a variavel de ambiente DATABASE_URI ele irá optar por essa conexão. A API tem compatibilidade com qualquer tipo de banco relacional.
 
 | Objetivos | Estado |
 | ------------- |:-------------:|
-| Controlar o empréstimos, renovações, reservas, pendências de livros | Desenvolvido |
-| Reduzir o tempo de atendimento nas transações | Desenvolvido |
-| Controlar o cadastro de usuários, livros e autores | Desenvolvido |
+| Controlar o empréstimos, renovações, reservas e pendências de livros | Concluído |
+| Reduzir o tempo de atendimento nas transações | Concluído |
+| Controlar o cadastro de usuários, livros e autores | Concluído |
 
 
 ## Desenvolvimento
 
 Esse projeto foi criado e desenvolvimento pelos alunos [José Pedro da Silva Gomes(Eu)](https://github.com/oopaze), [Michael Pereira](https://github.com/MichaelPereira31) e [Alan Figueiredo]() do Instituto Federal do Ceará para ser apresentado na disciplina de Algoritimos e Programação 2 do professor Yuri Almeida Lacerda. 
 
+## Instalação
+```
+    #Baixando proeto
+    git clone https://github.com/oopaze/Biblioteca-API.git
+
+    #Entrando na pasta do projeto
+    cd Biblioteca-API
+
+    
+    #Instalando dependências e criando banco
+    Linux: source initialize.sh
+    Windows: initialize
+```
+
 ## Routes
 
 ### Login
 
-1. `auth/` - POST - Gera seu token de autenticação
+1. `/login` - POST - Gera seu token de autenticação
 
 ### Usuarios
 
@@ -45,9 +50,10 @@ Esse projeto foi criado e desenvolvimento pelos alunos [José Pedro da Silva Gom
 
 1. `livro/` - GET - Mostra todos os livros (Necessita estar logado)
 2. `livro/` - POST - Adiciona um livro (Somente para Administradores)
-3. `livro/<int:id>/` - GET - Mostra somente um livro (Necessita estar logado)
-4. `livro/<int:id>/` - PUT - Atualiza um livro (Somente para Administradores)
-5. `livro/<int:id>/` - DELETE - Deleta um livro (Somente para Administradores)
+3. `livro/varios/` - POST - Adiciona vários livros (Somente para Administradores)
+4. `livro/<int:id>/` - GET - Mostra somente um livro (Necessita estar logado)
+5. `livro/<int:id>/` - PUT - Atualiza um livro (Somente para Administradores)
+6. `livro/<int:id>/` - DELETE - Deleta um livro (Somente para Administradores)
 
 ### Autores
 

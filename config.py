@@ -22,6 +22,8 @@ class Production(Config):
     ENV = 'production'
     DEBUG = False
     basedir = os.path.abspath(os.path.dirname(__file__))
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'biblioteca.db')
+    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URI']
+    if not os.environ['DATABASE_URI']:
+        SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'biblioteca.db')
 
     

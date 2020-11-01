@@ -21,7 +21,9 @@ def create_app():
     from app.biblioteca.routes import biblioteca
     from app.livros.routes import livro
     from app.usuarios.routes import user
+    from app.src.routes import src
 
+    app.register_blueprint(src)
     app.register_blueprint(autor, url_prefix='/autor')
     app.register_blueprint(biblioteca, url_prefix='/biblioteca')
     app.register_blueprint(livro, url_prefix='/livro')
