@@ -11,23 +11,28 @@ autor = Blueprint('autor', __name__)
 @jwt_required()
 def autor_read():
     autoreschema = AutorSchema(many=True)
-    readAutores  = Autor.query.order_by(Autor.name).all()
-    dados = autoreschema.dump(readAutores)
+    read_autores  = Autor.query.order_by(Autor.name).all()
+    dados = autoreschema.dump(read_autores)
     return autoreschema.jsonify(dados)
 
 @autor.route("/", methods=['POST'])
 @admin_required()
 def autor_create():
-    name = request.json["name"]
-    newAutor = Autor(name)
-    db.session.add(newAutor)
-    db.session.commit()
-    
-    autorschema = AutorSchema()
     dados = {}
-    dados["data"] = autorschema.dump(newAutor)
-    dados["mensagem"] = "Autor criado com sucesso!"
-    return jsonify(dados)
+    try:
+        name = request.json["name"]
+        newAutor = Autor(name)
+        db.session.add(newAutor)
+        db.session.commit()
+        
+        autorschema = AutorSchema()
+        
+        dados["data"] = autorschema.dump(newAutor)
+        dados["mensagem"] = "Autor criado com sucesso!"
+        return jsonify(dados), 201
+    except:
+        dados["mensagem"] = "Dados inválidos!"
+        return jsonify(dados),400
 
 @autor.route("/<int:id>",methods=['PUT'])
 @admin_required()
@@ -36,7 +41,6 @@ def autor_upgrade(id):
     autor = Autor.query.filter_by(id=id).first()
     
     
-    #importante
     try:
         name = request.json["name"]
         autor.name = name
@@ -53,7 +57,6 @@ def autor_upgrade(id):
 
     except KeyError:
         dados["mensagem"] = "Dados inválidos!"
-        #lembrar
         return jsonify(dados),400
     
 
@@ -61,14 +64,19 @@ def autor_upgrade(id):
 @autor.route("/<int:id>",methods=['DELETE'])
 @admin_required()
 def autor_delete(id):
-    autor = Autor.query.get(id)
-
-    db.session.delete(autor)
-    db.session.commit()
-
-    autorschema = AutorSchema()
     dados = {}
-    dados["data"] = autorschema.dump(autor)
-    dados["mensagem"] = "Autor deletado com sucesso!"
+    try:
+        autor = Autor.query.get(id)
 
-    return jsonify(dados)
+        db.session.delete(autor)
+        db.session.commit()
+
+        autorschema = AutorSchema()
+        
+        dados["data"] = autorschema.dump(autor)
+        dados["mensagem"] = "Autor deletado com sucesso!"
+
+        return jsonify(dados)
+    except: 
+        dados["mensagem"] = "Impossivel excluir autor, verificar dados."
+        return jsonify(dados)
