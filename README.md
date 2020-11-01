@@ -13,6 +13,7 @@
 * [Objetivos](https://github.com/oopaze/Biblioteca-API#objetivos)
 * [Atividades](https://github.com/oopaze/Biblioteca-API#atividades)
 
+
 ## Sobre
 
 Esse projeto foi criado e desenvolvimento pelos alunos [José Pedro](https://github.com/oopaze), [Michael Pereira](https://github.com/MichaelPereira31) e [Alan Figueiredo]() do Instituto Federal do Ceará para ser apresentado na disciplina de Algoritimos e Programação 2 do professor Yuri Almeida Lacerda.
@@ -34,6 +35,7 @@ Por padrão a Biblioteca-Fácil usa SQLite3 como banco de dados, porém ela pode
     set DATABASE_URI="postgresql://scott:tiger@localhost:5432/mydatabase"
     ```
 
+
 ## Instalação
 ```shell
     #Baixando proeto
@@ -47,6 +49,7 @@ Por padrão a Biblioteca-Fácil usa SQLite3 como banco de dados, porém ela pode
     Linux: source initialize.sh
     Windows: initialize
 ```
+
 
 ## Rotas
 
@@ -77,6 +80,8 @@ Por padrão a Biblioteca-Fácil usa SQLite3 como banco de dados, porém ela pode
 
 ### Biblioteca
 
+
+
 ## Objetivos
 
 Dos objetivos a serem atingidos, segue uma pequena tabela explanatória:
@@ -86,6 +91,7 @@ Dos objetivos a serem atingidos, segue uma pequena tabela explanatória:
 | Controlar o empréstimos, renovações, reservas e pendências de livros | Concluído |
 | Reduzir o tempo de atendimento nas transações | Concluído |
 | Controlar o cadastro de usuários, livros e autores | Concluído |
+
 
 ## Atividades
 
