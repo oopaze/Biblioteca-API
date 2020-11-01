@@ -7,13 +7,10 @@ Essa API foi construida usando Flask no seu backend, SQLAlchemy na configuraçã
 
 Esta usa por padrão SQLite3 como banco de dados, porém ela pode usar qualquer tipo de banco de dados relacional somente criando a variavel de ambiente DATABASE_URI com uma conexão válida: 
     
-    * modelo: "tipo_de_db://username:senha@endereço:porta/nome_database";
-    
-    * exemplo: "postgresql://scott:tiger@localhost:5432/mydatabase";
-    
-    * linux script: `export DATABASE_URI="postgresql://scott:tiger@localhost:5432/mydatabase"`;
-    
-    * windows script: `set DATABASE_URI="postgresql://scott:tiger@localhost:5432/mydatabase"`
+* modelo: "tipo_de_db://username:senha@endereço:porta/nome_database"
+* exemplo: "postgresql://scott:tiger@localhost:5432/mydatabase"
+* linux script: `export DATABASE_URI="postgresql://scott:tiger@localhost:5432/mydatabase"`
+* windows script: `set DATABASE_URI="postgresql://scott:tiger@localhost:5432/mydatabase"`
 
 | Objetivos | Estado |
 | ------------- |:-------------:|
