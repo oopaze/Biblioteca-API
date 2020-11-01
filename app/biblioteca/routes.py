@@ -5,6 +5,7 @@ from flask_jwt import jwt_required, current_identity
 from app.configuracao.db import db
 from app.configuracao.auth import admin_required
 from app.usuarios.models import User
+from app.livros.models import Livro
 
 from .utils import take_books
 from .schemas import EmprestimoSchema, LivroSchema
@@ -151,3 +152,24 @@ def ler_emprestimos():
         data = {'message': "Nenhum emprestimo feito."}
 
     return jsonify(data), 200
+
+@biblioteca.route('/disponiveis/', methods = ['GET'])
+@jwt_required()
+def livro_disponiveis():
+    livroschema = LivroSchema(many=True)
+    disponiveis = Livro.query.filter(Livro.disponivel==True).all()
+    dados = livroschema.dump(disponiveis)
+    if len(disponiveis) == 0:
+        dados = {'message': "Nenhum livro disponivel"}
+
+    return disponiveis.jsonify(dados)
+
+@biblioteca.route('/indisponiveis/', methods = ['GET'])
+@adm_required()
+def livro_indisponiveis():
+    livroschema = LivroSchema(many=True)
+    disponiveis = Livro.query.filter(Livro.disponivel==False).all()
+    dados = livroschema.dump(disponiveis)
+    if len(disponiveis) == 0:
+        dados = {'message': "Nenhum livro indisponivel"}
+    return disponiveis.jsonify(dados)
