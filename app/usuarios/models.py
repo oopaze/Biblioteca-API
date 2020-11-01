@@ -10,7 +10,7 @@ class User(db.Model):
     password = db.Column(db.String, nullable=False)
     admin = db.Column(db.Boolean, default=False)
 
-    emprestimos = db.relationship(Emprestimo, backref='usuarios', lazy=True)
+    emprestimo = db.relationship(Emprestimo, uselist=False, backref='usuarios', lazy=True)
 
     def __init__(self, name, username, password, admin: bool = None):
         self.name = name

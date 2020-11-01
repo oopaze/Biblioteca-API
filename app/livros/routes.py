@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt import jwt_required
+from sqlalchemy.orm.exc import FlushError
 
 from app.configuracao.auth import admin_required
 from app.configuracao.db import db
@@ -84,6 +85,13 @@ def adicionar_livro():
         }
 
         return jsonify(data), 400
+    
+    except FlushError:
+        data = {
+            'message': 'Autor não encontrado.'
+        }
+
+        return jsonify(data), 404
 
 
 @livro.route('/varios/', methods=['POST'])
@@ -93,26 +101,41 @@ def adicionar_varios_livros():
     autorschema = AutorSchema(many=True)
     data = []
 
-    for livro in request.json:
-        _livro = Livro(**livro)
+    try:
+        for livro in request.json:
+            _livro = Livro(**livro)
 
-        db.session.add(_livro)
-        db.session.commit()
-    
-        if 'autores' in livro:
-            autores = _livro.adicionar_autor(livro['autores'])
-            
-            for autor in autores:
-                _livro.autores.append(autor)
-
+            db.session.add(_livro)
             db.session.commit()
         
-        dados = livroschema.dump(_livro)
-        dados['autores'] = autorschema.dump(_livro.autores)
-        
-        data.append(dados)
+            if 'autores' in livro:
+                autores = _livro.adicionar_autor(livro['autores'])
+                
+                for autor in autores:
+                    _livro.autores.append(autor)
 
-    return jsonify(data), 201
+                db.session.commit()
+            
+            dados = livroschema.dump(_livro)
+            dados['autores'] = autorschema.dump(_livro.autores)
+            
+            data.append(dados)
+
+        return jsonify(data), 201
+    
+    except (ValueError, TypeError):
+        data = {
+            'message': 'Erro ao adicionar livro.'
+        }
+
+        return jsonify(data), 400
+
+    except FlushError:
+        data = {
+            'message': 'Autor não encontrado.'
+        }
+
+        return jsonify(data), 404
 
 
 @livro.route('/<int:id>', methods=['PUT'])
