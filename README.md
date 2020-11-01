@@ -33,14 +33,6 @@ Por padrão a Biblioteca-Fácil usa SQLite3 como banco de dados, porém ela pode
     set DATABASE_URI="postgresql://scott:tiger@localhost:5432/mydatabase"
     ```
 
-Dos objetivos a serem atingidos, segue uma pequena tabela explanatória:
-
-| Objetivos | Estado |
-| ------------- |:-------------:|
-| Controlar o empréstimos, renovações, reservas e pendências de livros | Concluído |
-| Reduzir o tempo de atendimento nas transações | Concluído |
-| Controlar o cadastro de usuários, livros e autores | Concluído |
-
 ## Instalação
 ```shell
     #Baixando proeto
@@ -83,3 +75,38 @@ Dos objetivos a serem atingidos, segue uma pequena tabela explanatória:
 ### Autores
 
 ### Biblioteca
+
+## Objetivos
+
+Dos objetivos a serem atingidos, segue uma pequena tabela explanatória:
+
+| Objetivos | Estado |
+| ------------- |:-------------:|
+| Controlar o empréstimos, renovações, reservas e pendências de livros | Concluído |
+| Reduzir o tempo de atendimento nas transações | Concluído |
+| Controlar o cadastro de usuários, livros e autores | Concluído |
+
+## Atividades
+
+As atividades a serem desenvolvidas foram dispostas da seguinte maneira:
+| Atividade | Descrição |
+| ------------- |:-------------:|
+| 1 | Criação do esqueleto do Projeto e dos arquivos de configuração. |
+| 2 | Configurar o banco de dados, a autenticação e os schemas. |
+| 3 | Criação dos modelos das Apps: Autor, Livro, Usuário. |
+| 4 | Criação dos schemas das Apps: Autor, Livro, Usuário. |
+| 5 | Criação das rotas das Apps: Autor, Livro, Usuário. |
+| 6 | Criação das rotas e regras de negócio da App: Biblioteca. |
+
+Das subdivisões das tarefas e responsabilidades:
+| Responsável | Atividade | Data |
+| ------------- |:-------------:|:-------------:|
+|Michael Pereira|Criação do esqueleto do Projeto e dos arquivos de configuração.|26 de outubro|
+|José Pedro|Configurar o banco de dados, a autenticação e os schemas.|26 de outubro|
+|Michael Pereira|Criação do modelo, schema, rotas da App: Autor.|28 de outubro|
+|José Pedro|Criação do modelo, schema, rotas da App: Usuário.|29 de outubro|
+|Alan Figueiredo|Criação das rotas GET de Livro, Autor e Usuário.|29 de outubro|
+|José Pedro|Criação do modelo, schema, rotas da App: Livro.|30 de outubro|
+|José Pedro|Criação das rotas e regras de negócio da App: Biblioteca.|01 de novembro|
+|Michael Pereira|Criação das rotas e regras de negócio da App: Biblioteca.|01 de novembro|
+
