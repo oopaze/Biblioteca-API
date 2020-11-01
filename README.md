@@ -3,7 +3,13 @@
 
 O Biblioteca-Fácil é uma API que permitirá auxiliar na gerência de pequenas bibliotecas diminuindo a utilização e preenchimento de protocolos de empréstimos, facilitando a gestão e melhorando a rotina diária com seus usuários. A idéia do  projeto é poder proporcionar aos usuários uma maior interação com o conteúdo disponível na biblioteca através de vários mecanismos de busca. 
 
-Essa API foi construida usando Flask no seu backend, SQLAlchemy na configuração do banco de dados, Marshmallow nas serialização dos models e Flask-JWT para o controle de autenticação. A app conta com dois tipos de autenticação nas rotas, uma para administradores e outra para usuários, onde o administrador tem acesso a tudo. Ela usa por padrão SQLite3 como banco de dados, porém se existir a variavel de ambiente DATABASE_URI ele irá optar por essa conexão. A API tem compatibilidade com qualquer tipo de banco relacional.
+Essa API foi construida usando Flask no seu backend, SQLAlchemy na configuração do banco de dados, Marshmallow nas serialização dos models e Flask-JWT para o controle de autenticação. A app conta com dois tipos de autenticação nas rotas, uma para administradores e outra para usuários, onde o administrador tem acesso a tudo. 
+
+Esta usa por padrão SQLite3 como banco de dados, porém ela pode usar qualquer tipo de banco de dados relacional somente criando a variavel de ambiente DATABASE_URI com uma conexão válida: 
+    ..*modelo: "tipo_de_db://username:senha@endereço:porta/nome_database";
+    ..*exemplo: "postgresql://scott:tiger@localhost:5432/mydatabase";
+    ..*linux script: `export DATABASE_URI="postgresql://scott:tiger@localhost:5432/mydatabase"`;
+    ..*windows script: `set DATABASE_URI="postgresql://scott:tiger@localhost:5432/mydatabase"`
 
 | Objetivos | Estado |
 | ------------- |:-------------:|
