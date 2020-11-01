@@ -6,11 +6,11 @@
 * [Desenvolvimento](https://github.com/oopaze/Biblioteca-API#desenvolvimento)
 * [Instalação](https://github.com/oopaze/Biblioteca-API#instalação)
 * [Rotas](https://github.com/oopaze/Biblioteca-API#rotas)
-* [Rotas/login](https://github.com/oopaze/Biblioteca-API#login)
-* [Rotas/usuarios](https://github.com/oopaze/Biblioteca-API#usuarios)
-* [Rotas/livros](https://github.com/oopaze/Biblioteca-API#livros)
-* [Rotas/autores](https://github.com/oopaze/Biblioteca-API#autores)
-* [Rotas/biblioteca](https://github.com/oopaze/Biblioteca-API#biblioteca)
+    * [Login](https://github.com/oopaze/Biblioteca-API#login)
+    * [Usuarios](https://github.com/oopaze/Biblioteca-API#usuarios)
+    * [Livros](https://github.com/oopaze/Biblioteca-API#livros)
+    * [Autores](https://github.com/oopaze/Biblioteca-API#autores)
+    * [Biblioteca](https://github.com/oopaze/Biblioteca-API#biblioteca)
 
 ## Sobre
 
