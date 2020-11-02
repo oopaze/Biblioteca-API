@@ -80,8 +80,8 @@ Por padrão a Biblioteca-Fácil usa SQLite3 como banco de dados, porém ela pode
 
 Todo autor é composto por um name e um ID, porém o campo ID não é necessário ser enviado. Para atualizar/deletar um autor, é necessário enviar o ID do autor na URL.
 
-* `autor/` - GET - Mostra todos os autores (Somente para Administradores)
-* `autor/` - POST - Adiciona um novo autor (Somente para Administradores)
+1. `autor/` - GET - Mostra todos os autores (Somente para Administradores)
+2. `autor/` - POST - Adiciona um novo autor (Somente para Administradores)
 
 Para adicionar um autor é necessário ser enviado um JSON contendo com um campo "name".
 
@@ -91,7 +91,7 @@ Para adicionar um autor é necessário ser enviado um JSON contendo com um campo
     "name": nome do autor
   }
 ```
-* `autor/:id/` - PUT - Atualizar um autor pelo ID (Somente para Administradores)
+3. `autor/:id/` - PUT - Atualizar um autor pelo ID (Somente para Administradores)
 Para atualizar um autor é necessário passar o ID do autor na URL e enviar um JSON contendo o campo "name".
 
 **como por exemplo:**
@@ -100,7 +100,7 @@ Para atualizar um autor é necessário passar o ID do autor na URL e enviar um J
     "name": nome do autor
   }
 ```
-* `autor/:id/` - DELETE - Deletar um autor pelo ID (Somente para Administradores)
+4. `autor/:id/` - DELETE - Deletar um autor pelo ID (Somente para Administradores)
 
 Para deletar um autor é necessário passar o ID do autor na URL.
 
@@ -108,7 +108,7 @@ Para deletar um autor é necessário passar o ID do autor na URL.
 
 Esta  aplicação engloba as funções principais da biblioteca. É aqui onde são feitos o controle dos livros, dos emprestimos, das devoluções, das disponibilidades e das pendências.
 
-* `biblioteca/emprestar/` - POST - Realiza o emprestimos dos livros(Somente para Administradores)
+1. `biblioteca/emprestar/` - POST - Realiza o emprestimos dos livros(Somente para Administradores)
 
 Para adicionar um emprestimo é necessário ser enviado um JSON contendo com um campo opcional "usuario" com o ID do usuário e um campo "livros" com um Array com o ID de cada livro a ser emprestado. Se o campo "usuario" não for enviado o emprestimo sera feito com o usuário logado.
 
@@ -123,7 +123,7 @@ Para adicionar um emprestimo é necessário ser enviado um JSON contendo com um 
     ]
   }
 ```
-* `biblioteca/devolucao/` - POST - Realiza a devolução do livro(Somente para Administradores)
+2. `biblioteca/devolucao/` - POST - Realiza a devolução do livro(Somente para Administradores)
 
 Para realizar uma devolução é necessário ser enviado um JSON com o campo "usuario" contendo o ID do usuário.
 
@@ -133,10 +133,10 @@ Para realizar uma devolução é necessário ser enviado um JSON com o campo "us
     "usuario": id do usuario,
   }
 ```
-* `biblioteca/pendencias/` - GET - Mostra as devoluções que estão pendentes(Somente para Administradores)
-* `biblioteca/emprestimos/` - GET - Mostra todos os emprestomos (Somente para Administradores)
-* `biblioteca/disponiveis/` - GET - Mostra todos os livros disponiveis (Somente para Administradores)
-* `biblioteca/indisponivel/` - GET - Mostra todos os livros indisponivel(Necessita estar logado)
+3. `biblioteca/pendencias/` - GET - Mostra as devoluções que estão pendentes(Somente para Administradores)
+4. `biblioteca/emprestimos/` - GET - Mostra todos os emprestomos (Somente para Administradores)
+5. `biblioteca/disponiveis/` - GET - Mostra todos os livros disponiveis (Somente para Administradores)
+6. `biblioteca/indisponivel/` - GET - Mostra todos os livros indisponivel(Necessita estar logado)
 
 
 ## Objetivos
