@@ -80,13 +80,13 @@ Por padrão a Biblioteca-Fácil usa SQLite3 como banco de dados, porém ela pode
 
 1. `autor/` - GET - Mostra todos os autores (Somente para Administradores)
 2. `autor/` - POST - Adiciona um novo autor (Somente para Administradores)
-3. `autor/<int:id>` - PUT - Atualiza um autor pelo ID (Somente para Administradores)
+3. `autor/<int:id>/` - PUT - Atualiza um autor pelo ID (Somente para Administradores)
 4. `autor/<int:id>/` - DELETE - Deleta um autor pelo ID (Somente para Administradores)
 
 ### Biblioteca
 
-1. `biblioteca/disponiveis` - GET - Mostra todos os livros disponiveis (Somente para Administradores)
-2. `biblioteca/indisponivel` - GET - Mostra todos os livros indisponivel(Necessita estar logado)
+1. `biblioteca/disponiveis/` - GET - Mostra todos os livros disponiveis (Somente para Administradores)
+2. `biblioteca/indisponivel/` - GET - Mostra todos os livros indisponivel(Necessita estar logado)
 
 
 ## Objetivos
