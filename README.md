@@ -4,7 +4,7 @@
 
 * [Sobre](https://github.com/oopaze/Biblioteca-API#sobre)
 * [Instalação](https://github.com/oopaze/Biblioteca-API#instalação)
-* [Rotas](https://github.com/oopaze/Biblioteca-API#rotas)
+* [EndPoints](https://github.com/oopaze/Biblioteca-API#endpoints)
     * [Login](https://github.com/oopaze/Biblioteca-API#login)
     * [Usuarios](https://github.com/oopaze/Biblioteca-API#usuarios)
     * [Livros](https://github.com/oopaze/Biblioteca-API#livros)
@@ -51,7 +51,7 @@ Por padrão a Biblioteca-Fácil usa SQLite3 como banco de dados, porém ela pode
 ```
 
 
-## Rotas
+## EndPoints
 
 ### Login
 
