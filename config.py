@@ -18,8 +18,8 @@ class Development(Config):
     basedir = os.path.abspath(os.path.dirname(__file__))
 
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'biblioteca.db')
-    if "DATABASE_URI" in os.environ:
-        SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URI'] 
+    if "DATABASE_URL" in os.environ:
+        SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL'] 
 
 
 class Production(Config):
@@ -28,7 +28,7 @@ class Production(Config):
     basedir = os.path.abspath(os.path.dirname(__file__))
 
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'biblioteca.db')
-    if "DATABASE_URI" in os.environ:
-        SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URI']     
+    if "DATABASE_URL" in os.environ:
+        SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']     
 
     
