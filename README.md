@@ -87,8 +87,8 @@ Todo usuário é composto é por um ID, um name, um username, um password, um Ad
   }
 ```
 
-4. `user/<int:id>/` - GET - Mostra um único usuário (Somente para Administradores)
-5. `user/<int:id>/` - PUT - Atualiza um único usuário (Somente para Administradores)
+4. `user/:id/` - GET - Mostra um único usuário (Somente para Administradores)
+5. `user/:id/` - PUT - Atualiza um único usuário (Somente para Administradores)
 
 > Para atualizar um usuário é necessário enviar um JSON contendo os campos "name","username","password" e "admin".
 
@@ -113,18 +113,76 @@ Todo usuário é composto é por um ID, um name, um username, um password, um Ad
   }
 ```
 
-7. `user/<int:id>/` - DELETE - Deleta um único usuário (Somente para Administradores)
+7. `user/:id/` - DELETE - Deleta um único usuário (Somente para Administradores)
 
 > Para deletar um usuário é necessário enviar o ID do usuário na URL.
 
 ### Livros
 
+Todo livro é composto por um ID, um titulo, um volume, um disponivel, um autores, um adicionado em, um atualizado em e uma coluna de relação OneToMany com emprestimos.
+
 1. `livro/` - GET - Mostra todos os livros (Necessita estar logado)
 2. `livro/` - POST - Adiciona um livro (Somente para Administradores)
+
+> Para adicionar um livro é necessário ser enviado um JSON contendo os campos "titulo","vol","disponivel" e um campo opcional "autores" que conterá um Array com os ID's dos autores do livro.
+
+**como por exemplo:**
+```
+{
+	"titulo": "novo",
+	"vol": 1,
+	"disponivel": true,
+	"autores": [
+		1
+	]
+}
+```
+
 3. `livro/varios/` - POST - Adiciona vários livros (Somente para Administradores)
-4. `livro/<int:id>/` - GET - Mostra somente um livro (Necessita estar logado)
-5. `livro/<int:id>/` - PUT - Atualiza um livro (Somente para Administradores)
-6. `livro/<int:id>/` - DELETE - Deleta um livro (Somente para Administradores)
+
+> Para adicionar vários livros é necessário ser enviado um JSON contendo um Array, onde cada objeto desse Array deverá ter os campos "titulo","vol","disponivel" e um campo opcional "autores" que conterá um Array com os ID's dos autores do livro.
+
+**como por exemplo:**
+```
+[
+  {
+    "titulo": "novo",
+    "vol": 1,
+    "disponivel": true,
+    "autores": [
+      1
+    ]
+  },
+  {
+    "titulo": "novo2",
+    "vol": 2,
+    "disponivel": true,
+    "autores": [
+      1
+    ]
+  },
+  
+]
+```
+
+4. `livro/:id/` - GET - Mostra somente um livro (Necessita estar logado)
+5. `livro/:id/` - PUT - Atualiza um livro (Somente para Administradores)
+
+> Para atualizar um livro é necessário ser enviado um JSON contendo os campos "titulo","vol","disponivel" e um campo opcional "autores" que conterá um Array com os ID's dos autores do livro.
+
+**como por exemplo:**
+```
+{
+	"titulo": "novo_atualizado",
+	"vol": 1,
+	"disponivel": true,
+	"autores": [
+		1
+	]
+}
+```
+
+6. `livro/:id/` - DELETE - Deleta um livro (Somente para Administradores)
 
 > Para deletar um livro é necessário passar o ID do livro na URL.
 
