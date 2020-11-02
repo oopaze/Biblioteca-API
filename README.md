@@ -69,13 +69,13 @@ Para realizar o login é necessário ser enviado um JSON contendo os campos "use
 
 ### Usuarios
 
-> Todo usuário é composto é por um ID, um name, um username, um password, um Admin e uma relação OneToOne com emprestimos.
+Todo usuário é composto é por um ID, um name, um username, um password, um Admin e uma relação OneToOne com emprestimos.
 
 1. `user/` - GET - Mostra todos os usuários (Somente para Administradores)
 2. `user/voce/` - GET - Mostra todos os dados do usuario logado (Necessita estar logado)
 3. `user/` - POST - Cria um novo usuário
 
-Para adicionar um usuário é necessário ser enviado um JSON contendo os campos "name","username","password" e "admin".
+> Para adicionar um usuário é necessário ser enviado um JSON contendo os campos "name","username","password" e "admin".
 
 **como por exemplo:**
 ```
