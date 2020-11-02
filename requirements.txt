@@ -9,6 +9,7 @@ flask-marshmallow==0.14.0
 Flask-Migrate==2.5.3
 Flask-Script==2.0.6
 Flask-SQLAlchemy==2.4.4
+gunicorn==20.0.4
 ipdb==0.13.4
 ipython==7.18.1
 ipython-genutils==0.2.0
