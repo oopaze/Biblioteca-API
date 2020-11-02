@@ -16,7 +16,7 @@
 
 ## Sobre
 
-Esse projeto foi criado e desenvolvimento pelos alunos [José Pedro](https://github.com/oopaze), [Michael Pereira](https://github.com/MichaelPereira31) e [Alan Figueiredo]() do Instituto Federal do Ceará para ser apresentado na disciplina de Algoritimos e Programação 2 do professor Yuri Almeida Lacerda.
+Esse projeto foi criado e desenvolvimento pelos alunos [José Pedro](https://github.com/oopaze), [Michael Pereira](https://github.com/MichaelPereira31) e [Alan Figueiredo](https://github.com/aemmanuel138) do Instituto Federal do Ceará para ser apresentado na disciplina de Algoritimos e Programação 2 do professor Yuri Almeida Lacerda.
 
 O Biblioteca-Fácil é uma API que permitirá auxiliar na gerência de pequenas bibliotecas diminuindo a utilização e preenchimento de protocolos de empréstimos, facilitando a gestão e melhorando a rotina diária com seus usuários. A idéia do  projeto é poder proporcionar aos usuários uma maior interação com o conteúdo disponível na biblioteca através de vários mecanismos de busca. 
 
@@ -80,13 +80,28 @@ Por padrão a Biblioteca-Fácil usa SQLite3 como banco de dados, porém ela pode
 
 1. `autor/` - GET - Mostra todos os autores (Somente para Administradores)
 2. `autor/` - POST - Adiciona um novo autor (Somente para Administradores)
-3. `autor/<int:id>/` - PUT - Atualiza um autor pelo ID (Somente para Administradores)
-4. `autor/<int:id>/` - DELETE - Deleta um autor pelo ID (Somente para Administradores)
+3. `autor/<int:id>/` - PUT - Atualizar um autor pelo ID (Somente para Administradores)
+4. `autor/<int:id>/` - DELETE - Deletar um autor pelo ID (Somente para Administradores)
+
+Todo autor é composto por um name e um ID, porém o campo ID é necessário ser enviado. Para atualizar/deletar um autor, é necessário ser enviar um JSON contendo a chave data com o campo "id".
+
+**como por exemplo:**
+```
+  {
+    "data": {
+      "id": id do autor
+    }
+  }
+```
 
 ### Biblioteca
 
-1. `biblioteca/disponiveis/` - GET - Mostra todos os livros disponiveis (Somente para Administradores)
-2. `biblioteca/indisponivel/` - GET - Mostra todos os livros indisponivel(Necessita estar logado)
+1. `biblioteca/emprestar/` - POST - Realiza o emprestimos dos livros(Somente para Administradores)
+2. `biblioteca/entregar/` - POST - Realiza a devolução do livro(Somente para Administradores)
+3. `biblioteca/pendencias/` - GET - Mostra as devoluções que estão pendenter(Somente para Administradores)
+4. `biblioteca/emprestimos/` - GET - Mostra todos os livros que foram emprestados e ainda anão foi devolvido (Somente para Administradores)
+5. `biblioteca/disponiveis/` - GET - Mostra todos os livros disponiveis (Somente para Administradores)
+6. `biblioteca/indisponivel/` - GET - Mostra todos os livros indisponivel(Necessita estar logado)
 
 
 ## Objetivos
