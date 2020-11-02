@@ -150,7 +150,7 @@ def ler_emprestimos():
 
     if not emprestimos:
         data = {'message': "Nenhum emprestimo feito."}
-forão
+
     return jsonify(data), 200
 
 @biblioteca.route('/disponiveis/', methods = ['GET'])
