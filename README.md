@@ -28,11 +28,11 @@ Por padrão a Biblioteca-Fácil usa SQLite3 como banco de dados, porém ela pode
 * exemplo: "postgresql://scott:tiger@localhost:5432/mydatabase"
 * linux script: 
     ```bash
-    export DATABASE_URI="postgresql://scott:tiger@localhost:5432/mydatabase"
+    export DATABASE_URL="postgresql://scott:tiger@localhost:5432/mydatabase"
     ```
 * windows script: 
     ```shell 
-    set DATABASE_URI="postgresql://scott:tiger@localhost:5432/mydatabase"
+    set DATABASE_URL="postgresql://scott:tiger@localhost:5432/mydatabase"
     ```
 
 
