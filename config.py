@@ -9,12 +9,13 @@ class Config(object):
     JWT_AUTH_URL_RULE = '/login'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = os.environ["SECRET_KEY"]
-    basedir = os.path.abspath(os.path.dirname(__file__))
+    
 
 
 class Development(Config):
     ENV = 'development'
     DEBUG = True
+    basedir = os.path.abspath(os.path.dirname(__file__))
 
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'biblioteca.db')
     if "DATABASE_URI" in os.environ:
@@ -24,6 +25,7 @@ class Development(Config):
 class Production(Config):
     ENV = 'production'
     DEBUG = False
+    basedir = os.path.abspath(os.path.dirname(__file__))
 
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'biblioteca.db')
     if "DATABASE_URI" in os.environ:
