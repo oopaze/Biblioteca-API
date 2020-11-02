@@ -57,15 +57,65 @@ Por padrão a Biblioteca-Fácil usa SQLite3 como banco de dados, porém ela pode
 
 1. `/login` - POST - Gera seu token de autenticação
 
+Para realizar o login é necessário ser enviado um JSON contendo os campos "username" e "password".
+
+**como por exemplo:**
+```
+  {
+    "username": username do usuário,
+    "password": senha do usuário
+  }
+```
+
 ### Usuarios
+
+> Todo usuário é composto é por um ID, um name, um username, um password, um Admin e uma relação OneToOne com emprestimos.
 
 1. `user/` - GET - Mostra todos os usuários (Somente para Administradores)
 2. `user/voce/` - GET - Mostra todos os dados do usuario logado (Necessita estar logado)
 3. `user/` - POST - Cria um novo usuário
+
+Para adicionar um usuário é necessário ser enviado um JSON contendo os campos "name","username","password" e "admin".
+
+**como por exemplo:**
+```
+  {
+    "name": nome completo do usuário,
+    "username": apelido do usuário,
+    "password": senha do usuário,
+    "admin": True or False
+  }
+```
+
 4. `user/<int:id>/` - GET - Mostra um único usuário (Somente para Administradores)
 5. `user/<int:id>/` - PUT - Atualiza um único usuário (Somente para Administradores)
+
+Para atualizar um usuário é necessário enviar um JSON contendo os campos "name","username","password" e "admin".
+
+**como por exemplo:**
+```
+  {
+    "name": nome completo do usuário,
+    "username": apelido do usuário,
+    "password": senha do usuário,
+    "admin": True or False
+  }
+```
+
 6. `user/password/` - PUT - Atualiza senha do usuário logado (Necessita estar logado)
+
+Para atualizar a senha do usuário logado é necessário enviar um JSON contendo um campo "password".
+
+**como por exemplo:**
+```
+  {
+    "password": senha do usuário,
+  }
+```
+
 7. `user/<int:id>/` - DELETE - Deleta um único usuário (Somente para Administradores)
+
+Para deletar um usuário é necessário enviar o ID do usuário na URL.
 
 ### Livros
 
@@ -75,6 +125,8 @@ Por padrão a Biblioteca-Fácil usa SQLite3 como banco de dados, porém ela pode
 4. `livro/<int:id>/` - GET - Mostra somente um livro (Necessita estar logado)
 5. `livro/<int:id>/` - PUT - Atualiza um livro (Somente para Administradores)
 6. `livro/<int:id>/` - DELETE - Deleta um livro (Somente para Administradores)
+
+Para deletar um livro é necessário passar o ID do livro na URL.
 
 ### Autores
 
