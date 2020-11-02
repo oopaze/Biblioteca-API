@@ -165,7 +165,7 @@ def livro_disponiveis():
     return disponiveis.jsonify(dados)
 
 @biblioteca.route('/indisponiveis/', methods = ['GET'])
-@adm_required()
+@admin_required()
 def livro_indisponiveis():
     livroschema = LivroSchema(many=True)
     disponiveis = Livro.query.filter(Livro.disponivel==False).all()
