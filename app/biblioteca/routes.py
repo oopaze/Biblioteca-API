@@ -135,7 +135,6 @@ def emprestimos_pendencias():
     data['message'] = "Nenhum empréstimo com pendência"
     return jsonify(data)
 
-
 @biblioteca.route('/emprestimos/', methods=['GET'])
 @admin_required()
 def ler_emprestimos():
@@ -163,6 +162,7 @@ def livro_disponiveis():
         dados = {'message': "Nenhum livro disponivel"}
 
     return disponiveis.jsonify(dados)
+
 
 @biblioteca.route('/indisponiveis/', methods = ['GET'])
 @admin_required()
