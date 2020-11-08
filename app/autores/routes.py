@@ -9,7 +9,7 @@ autor = Blueprint('autor', __name__)
 
 @autor.route("/",methods= ['GET'])
 @jwt_required()
-def autor_read():
+def autor_ler():
     autoreschema = AutorSchema(many=True)
     read_autores  = Autor.query.order_by(Autor.name).all()
     dados = autoreschema.dump(read_autores)
@@ -17,7 +17,7 @@ def autor_read():
 
 @autor.route("/", methods=['POST'])
 @admin_required()
-def autor_create():
+def autor_criar():
     dados = {}
     try:
         name = request.json["name"]
@@ -36,7 +36,7 @@ def autor_create():
 
 @autor.route("/<int:id>",methods=['PUT'])
 @admin_required()
-def autor_upgrade(id):
+def autor_atualizar(id):
     dados = {}
     autor = Autor.query.filter_by(id=id).first()
     
@@ -60,10 +60,9 @@ def autor_upgrade(id):
         return jsonify(dados),400
     
 
-
 @autor.route("/<int:id>",methods=['DELETE'])
 @admin_required()
-def autor_delete(id):
+def autor_deletar(id):
     dados = {}
     try:
         autor = Autor.query.get(id)
