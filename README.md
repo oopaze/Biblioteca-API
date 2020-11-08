@@ -193,7 +193,7 @@ Todo autor é composto por um name e um ID, porém o campo ID não é necessári
 1. `autor/` - GET - Mostra todos os autores (Somente para Administradores)
 2. `autor/` - POST - Adiciona um novo autor (Somente para Administradores)
 
-> Para adicionar um autor é necessário ser enviado um JSON contendo com um campo "name".
+> Para adicionar um autor é necessário ser enviado um JSON contendo um campo "name".
 
 **como por exemplo:**
 ```
