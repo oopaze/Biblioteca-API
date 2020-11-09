@@ -34,7 +34,7 @@ def autor_criar():
         dados["mensagem"] = "Dados inválidos!"
         return jsonify(dados),400
 
-@autor.route("/<int:id>",methods=['PUT'])
+@autor.route("/<int:id>/",methods=['PUT'])
 @admin_required()
 def autor_atualizar(id):
     dados = {}
@@ -60,7 +60,7 @@ def autor_atualizar(id):
         return jsonify(dados),400
     
 
-@autor.route("/<int:id>",methods=['DELETE'])
+@autor.route("/<int:id>/",methods=['DELETE'])
 @admin_required()
 def autor_deletar(id):
     dados = {}
