@@ -40,7 +40,6 @@ def autor_atualizar(id):
     dados = {}
     autor = Autor.query.filter_by(id=id).first()
     
-    
     try:
         name = request.json["name"]
         autor.name = name
@@ -57,7 +56,7 @@ def autor_atualizar(id):
 
     except KeyError:
         dados["mensagem"] = "Dados inválidos!"
-        return jsonify(dados),400
+        return jsonify(dados), 400
     
 
 @autor.route("/<int:id>/",methods=['DELETE'])
