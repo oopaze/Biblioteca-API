@@ -31,7 +31,7 @@ def emprestar_livro():
 
         if isinstance(usuario.emprestimo, Emprestimo):
             raise ValueError(
-                "Usuario já tem um emprestimo ou livro está indisponivel."
+                "Usuario já tem um emprestimo pendente."
             )
             
         emprestimo = Emprestimo()
@@ -108,7 +108,7 @@ def entregar_livro():
 
     except AttributeError:
         data = {
-            'message': 'Usuário não encontrado pendente.'
+            'message': 'Usuário não encontrado ou sem emprestimos pendentes.'
         }
 
         return jsonify(data), 404
