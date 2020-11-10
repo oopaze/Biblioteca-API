@@ -164,7 +164,7 @@ Todo livro é composto por um ID, um titulo, um volume, um disponivel, um autore
 	"vol": 1,
 	"disponivel": true,
 	"autores": [
-		1
+		id do autor
 	]
 }
 ```
@@ -181,7 +181,7 @@ Todo livro é composto por um ID, um titulo, um volume, um disponivel, um autore
     "vol": 1,
     "disponivel": true,
     "autores": [
-      1
+      id do autor
     ]
   },
   {
@@ -189,7 +189,8 @@ Todo livro é composto por um ID, um titulo, um volume, um disponivel, um autore
     "vol": 2,
     "disponivel": true,
     "autores": [
-      1
+      id do autor,
+      id do autor
     ]
   },
   
@@ -208,7 +209,8 @@ Todo livro é composto por um ID, um titulo, um volume, um disponivel, um autore
 	"vol": 1,
 	"disponivel": true,
 	"autores": [
-		1
+    id do autor,
+    id do autor
 	]
 }
 ```
