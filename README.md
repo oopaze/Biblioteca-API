@@ -41,15 +41,15 @@ Por padrão a Biblioteca-Fácil usa SQLite3 como banco de dados, porém ela pode
 ## Instalação
 ```shell
     #Baixando proeto
-    git clone https://github.com/oopaze/Biblioteca-API.git
+    > git clone https://github.com/oopaze/Biblioteca-API.git
 
     #Entrando na pasta do projeto
-    cd Biblioteca-API
+    > cd Biblioteca-API
 
     
     #Instalando dependências e criando banco
-    Linux: source initialize.sh
-    Windows: initialize
+    Linux: > source initialize.sh
+    Windows: > initialize.bat
 ```
 
 
