@@ -48,7 +48,7 @@ Por padrão a Biblioteca-Fácil usa SQLite3 como banco de dados, porém ela pode
 
     
     #Instalando dependências e criando banco
-    Linux: > source initialize.sh
+    Linux:   > source initialize.sh
     Windows: > initialize.bat
 ```
 
