@@ -5,8 +5,14 @@ from .configuracao.db import configure_db
 from .configuracao.ma import configure_ma
 from .configuracao.auth import configure_auth
 
+from .autores.routes import autor
+from .biblioteca.routes import biblioteca
+from .livros.routes import livro
+from .usuarios.routes import user
+from .src.routes import src
+
 def create_app():
-    """Função responsável por configurar e criar nossa app"""
+    """Função responsável por configurar e criar a Flask App"""
     app = Flask(__name__)
 
     app.config.from_object('config.Development')
@@ -16,12 +22,6 @@ def create_app():
     configure_auth(app)
 
     Migrate(app, app.db)
-
-    from app.autores.routes import autor
-    from app.biblioteca.routes import biblioteca
-    from app.livros.routes import livro
-    from app.usuarios.routes import user
-    from app.src.routes import src
 
     app.register_blueprint(src)
     app.register_blueprint(autor, url_prefix='/autor')
