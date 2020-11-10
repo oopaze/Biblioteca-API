@@ -64,8 +64,8 @@ Por padrão a Biblioteca-Fácil usa SQLite3 como banco de dados, porém ela pode
 **como por exemplo:**
 ```py
   {
-    "username": username do usuário,
-    "password": senha do usuário
+    "username": "username do usuário",
+    "password": "senha do usuário"
   }
 ```
 
@@ -82,9 +82,9 @@ Todo usuário é composto é por um ID, um name, um username, um password, um Ad
 **como por exemplo:**
 ```py
   {
-    "name": nome completo do usuário,
-    "username": apelido do usuário,
-    "password": senha do usuário,
+    "name": "nome completo do usuário",
+    "username": "apelido do usuário",
+    "password": "senha do usuário",
     "admin": True or False
   }
 ```
@@ -97,9 +97,9 @@ Todo usuário é composto é por um ID, um name, um username, um password, um Ad
 **como por exemplo:**
 ```py
   {
-    "name": nome completo do usuário,
-    "username": apelido do usuário,
-    "password": senha do usuário,
+    "name": "nome completo do usuário",
+    "username": "apelido do usuário",
+    "password": "senha do usuário",
     "admin": True or False
   }
 ```
@@ -111,7 +111,7 @@ Todo usuário é composto é por um ID, um name, um username, um password, um Ad
 **como por exemplo:**
 ```py
   {
-    "password": senha do usuário,
+    "password": "senha do usuário",
   }
 ```
 
@@ -131,7 +131,7 @@ Todo autor é composto por um name e um ID, porém o campo ID não é necessári
 **como por exemplo:**
 ```py
   {
-    "name": nome do autor
+    "name": "nome do autor"
   }
 ```
 3. `autor/:id/` - PUT - Atualizar um autor pelo ID (Somente para Administradores)
@@ -141,7 +141,7 @@ Todo autor é composto por um name e um ID, porém o campo ID não é necessári
 **como por exemplo:**
 ```py
   {
-    "name": nome do autor
+    "name": "nome do autor"
   }
 ```
 4. `autor/:id/` - DELETE - Deletar um autor pelo ID (Somente para Administradores)
