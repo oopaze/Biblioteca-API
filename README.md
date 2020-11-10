@@ -158,7 +158,7 @@ Todo livro é composto por um ID, um titulo, um volume, um disponivel, um autore
 > Para adicionar um livro é necessário ser enviado um JSON contendo os campos "titulo","vol","disponivel" e um campo opcional "autores" que conterá um Array com os ID's dos autores do livro.
 
 **como por exemplo:**
-```
+```py
 {
 	"titulo": "novo",
 	"vol": 1,
@@ -174,7 +174,7 @@ Todo livro é composto por um ID, um titulo, um volume, um disponivel, um autore
 > Para adicionar vários livros é necessário ser enviado um JSON contendo um Array, onde cada objeto desse Array deverá ter os campos "titulo","vol","disponivel" e um campo opcional "autores" que conterá um Array com os ID's dos autores do livro.
 
 **como por exemplo:**
-```
+```py
 [
   {
     "titulo": "novo",
@@ -202,7 +202,7 @@ Todo livro é composto por um ID, um titulo, um volume, um disponivel, um autore
 > Para atualizar um livro é necessário ser enviado um JSON contendo os campos "titulo","vol","disponivel" e um campo opcional "autores" que conterá um Array com os ID's dos autores do livro.
 
 **como por exemplo:**
-```
+```py
 {
 	"titulo": "novo_atualizado",
 	"vol": 1,
