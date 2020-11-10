@@ -7,8 +7,8 @@
 * [EndPoints](https://github.com/oopaze/Biblioteca-API#endpoints)
     * [Login](https://github.com/oopaze/Biblioteca-API#login)
     * [Usuarios](https://github.com/oopaze/Biblioteca-API#usuarios)
-    * [Livros](https://github.com/oopaze/Biblioteca-API#livros)
     * [Autores](https://github.com/oopaze/Biblioteca-API#autores)
+    * [Livros](https://github.com/oopaze/Biblioteca-API#livros)
     * [Biblioteca](https://github.com/oopaze/Biblioteca-API#biblioteca)
 * [Objetivos](https://github.com/oopaze/Biblioteca-API#objetivos)
 * [Atividades](https://github.com/oopaze/Biblioteca-API#atividades)
@@ -119,6 +119,35 @@ Todo usuário é composto é por um ID, um name, um username, um password, um Ad
 
 > Para deletar um usuário é necessário enviar o ID do usuário na URL.
 
+### Autores
+
+Todo autor é composto por um name e um ID, porém o campo ID não é necessário ser enviado. Para atualizar/deletar um autor, é necessário enviar o ID do autor na URL.
+
+1. `autor/` - GET - Mostra todos os autores (Somente para Administradores)
+2. `autor/` - POST - Adiciona um novo autor (Somente para Administradores)
+
+> Para adicionar um autor é necessário ser enviado um JSON contendo um campo "name".
+
+**como por exemplo:**
+```
+  {
+    "name": nome do autor
+  }
+```
+3. `autor/:id/` - PUT - Atualizar um autor pelo ID (Somente para Administradores)
+
+> Para atualizar um autor é necessário passar o ID do autor na URL e enviar um JSON contendo o campo "name".
+
+**como por exemplo:**
+```
+  {
+    "name": nome do autor
+  }
+```
+4. `autor/:id/` - DELETE - Deletar um autor pelo ID (Somente para Administradores)
+
+> Para deletar um autor é necessário passar o ID do autor na URL.
+
 ### Livros
 
 Todo livro é composto por um ID, um titulo, um volume, um disponivel, um autores, um adicionado em, um atualizado em e uma coluna de relação OneToMany com emprestimos.
@@ -187,35 +216,6 @@ Todo livro é composto por um ID, um titulo, um volume, um disponivel, um autore
 6. `livro/:id/` - DELETE - Deleta um livro (Somente para Administradores)
 
 > Para deletar um livro é necessário passar o ID do livro na URL.
-
-### Autores
-
-Todo autor é composto por um name e um ID, porém o campo ID não é necessário ser enviado. Para atualizar/deletar um autor, é necessário enviar o ID do autor na URL.
-
-1. `autor/` - GET - Mostra todos os autores (Somente para Administradores)
-2. `autor/` - POST - Adiciona um novo autor (Somente para Administradores)
-
-> Para adicionar um autor é necessário ser enviado um JSON contendo um campo "name".
-
-**como por exemplo:**
-```
-  {
-    "name": nome do autor
-  }
-```
-3. `autor/:id/` - PUT - Atualizar um autor pelo ID (Somente para Administradores)
-
-> Para atualizar um autor é necessário passar o ID do autor na URL e enviar um JSON contendo o campo "name".
-
-**como por exemplo:**
-```
-  {
-    "name": nome do autor
-  }
-```
-4. `autor/:id/` - DELETE - Deletar um autor pelo ID (Somente para Administradores)
-
-> Para deletar um autor é necessário passar o ID do autor na URL.
 
 ### Biblioteca
 
