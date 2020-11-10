@@ -108,7 +108,7 @@ def entregar_livro():
 
     except AttributeError:
         data = {
-            'message': 'Usuário não encontrado ou sem emprestimos pendentes.'
+            'message': 'Usuário não encontrado pendente.'
         }
 
         return jsonify(data), 404
