@@ -62,7 +62,7 @@ Por padrão a Biblioteca-Fácil usa SQLite3 como banco de dados, porém ela pode
 > Para realizar o login é necessário ser enviado um JSON contendo os campos "username" e "password".
 
 **como por exemplo:**
-```py
+```json
   {
     "username": "username do usuário",
     "password": "senha do usuário"
@@ -80,7 +80,7 @@ Todo usuário é composto é por um ID, um name, um username, um password, um Ad
 > Para adicionar um usuário é necessário ser enviado um JSON contendo os campos "name","username","password" e "admin".
 
 **como por exemplo:**
-```py
+```json
   {
     "name": "nome completo do usuário",
     "username": "apelido do usuário",
@@ -95,7 +95,7 @@ Todo usuário é composto é por um ID, um name, um username, um password, um Ad
 > Para atualizar um usuário é necessário enviar um JSON contendo os campos "name","username","password" e "admin".
 
 **como por exemplo:**
-```py
+```json
   {
     "name": "nome completo do usuário",
     "username": "apelido do usuário",
@@ -109,7 +109,7 @@ Todo usuário é composto é por um ID, um name, um username, um password, um Ad
 > Para atualizar a senha do usuário logado é necessário enviar um JSON contendo um campo "password".
 
 **como por exemplo:**
-```py
+```json
   {
     "password": "senha do usuário",
   }
@@ -129,7 +129,7 @@ Todo autor é composto por um name e um ID, porém o campo ID não é necessári
 > Para adicionar um autor é necessário ser enviado um JSON contendo um campo "name".
 
 **como por exemplo:**
-```py
+```json
   {
     "name": "nome do autor"
   }
@@ -139,7 +139,7 @@ Todo autor é composto por um name e um ID, porém o campo ID não é necessári
 > Para atualizar um autor é necessário passar o ID do autor na URL e enviar um JSON contendo o campo "name".
 
 **como por exemplo:**
-```py
+```json
   {
     "name": "nome do autor"
   }
@@ -158,7 +158,7 @@ Todo livro é composto por um ID, um titulo, um volume, um disponivel, um autore
 > Para adicionar um livro é necessário ser enviado um JSON contendo os campos "titulo","vol","disponivel" e um campo opcional "autores" que conterá um Array com os ID's dos autores do livro.
 
 **como por exemplo:**
-```py
+```json
 {
 	"titulo": "novo",
 	"vol": 1,
@@ -174,7 +174,7 @@ Todo livro é composto por um ID, um titulo, um volume, um disponivel, um autore
 > Para adicionar vários livros é necessário ser enviado um JSON contendo um Array, onde cada objeto desse Array deverá ter os campos "titulo","vol","disponivel" e um campo opcional "autores" que conterá um Array com os ID's dos autores do livro.
 
 **como por exemplo:**
-```py
+```json
 [
   {
     "titulo": "novo",
@@ -203,14 +203,14 @@ Todo livro é composto por um ID, um titulo, um volume, um disponivel, um autore
 > Para atualizar um livro é necessário ser enviado um JSON contendo os campos "titulo","vol","disponivel" e um campo opcional "autores" que conterá um Array com os ID's dos autores do livro.
 
 **como por exemplo:**
-```py
+```json
 {
 	"titulo": "novo_atualizado",
 	"vol": 1,
 	"disponivel": true,
 	"autores": [
-      id do autor,
-      id do autor,
+    id do autor,
+    id do autor,
 	]
 }
 ```
@@ -228,7 +228,7 @@ Esta  aplicação engloba as funções principais da biblioteca. É aqui onde s�
 > Para adicionar um emprestimo é necessário ser enviado um JSON contendo com um campo opcional "usuario" com o ID do usuário e um campo "livros" com um Array com o ID de cada livro a ser emprestado. Se o campo "usuario" não for enviado o emprestimo sera feito com o usuário logado.
 
 **como por exemplo:**
-```py
+```json
   {
     "usuario": id do usuario,
     "livros": [
@@ -243,7 +243,7 @@ Esta  aplicação engloba as funções principais da biblioteca. É aqui onde s�
 > Para realizar uma devolução é necessário ser enviado um JSON com o campo "usuario" contendo o ID do usuário.
 
 **como por exemplo:**
-```py
+```json
   {
     "usuario": id do usuario,
   }
