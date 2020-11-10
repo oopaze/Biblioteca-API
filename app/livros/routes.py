@@ -14,7 +14,7 @@ from .models import Livro
 livro = Blueprint('livro', __name__)
 
 @livro.route('/', methods=['GET'])
-@jwt_required()
+@admin_required()
 def ver_livros():
     livroschema = LivroSchema(many=True)
     autorschema = AutorSchema(many=True)

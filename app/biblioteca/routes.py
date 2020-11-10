@@ -14,7 +14,7 @@ from .models import Emprestimo
 biblioteca = Blueprint('biblioteca', __name__)
 
 @biblioteca.route('/emprestar/', methods=['POST'])
-@jwt_required()
+@admin_required()
 def emprestar_livro():
     emprestimo_schema = EmprestimoSchema()
     livro_schema = LivroSchema(many=True)
@@ -31,7 +31,7 @@ def emprestar_livro():
 
         if isinstance(usuario.emprestimo, Emprestimo):
             raise ValueError(
-                "É possível fazer somente um emprestimo por vez."
+                "Usuario já tem um emprestimo ou livro está indisponivel."
             )
             
         emprestimo = Emprestimo()
@@ -39,7 +39,9 @@ def emprestar_livro():
         usuario.emprestimo = emprestimo
         for i in range(len(livros)):
             if not livros[i].disponivel:
-                raise ValueError()
+                raise ValueError(
+                    f"Livro {livros[i].titulo} está indisponível."
+                )
             livros[i].disponivel = False
             emprestimo.livros.append(livros[i])
 
@@ -68,16 +70,16 @@ def emprestar_livro():
 
         return jsonify(data), 404
 
-    except ValueError:
+    except ValueError as error:
         data = {
-            'message': 'Usuario já tem um emprestimo ou livro está indisponivel.'
+            'message': error
         }
 
         return jsonify(data), 400
 
     
 @biblioteca.route('/entregar/', methods=['POST'])
-@jwt_required()
+@admin_required()
 def entregar_livro():
     emprestimo_schema = EmprestimoSchema()
     livro_schema = LivroSchema(many=True)
