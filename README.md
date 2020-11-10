@@ -39,6 +39,9 @@ Por padrão a Biblioteca-Fácil usa SQLite3 como banco de dados, porém ela pode
 
 
 ## Instalação
+
+Para rodar essa API é necessário ter no seu computador instalado os seguintes Apps: Git, Python 3.7+ e se for usar um banco diferente do SQLite3, o seu driver para criação do DB.
+
 ```shell
     #Baixando projeto
     > git clone https://github.com/oopaze/Biblioteca-API.git
@@ -53,7 +56,7 @@ Por padrão a Biblioteca-Fácil usa SQLite3 como banco de dados, porém ela pode
     #Rodando API
     > flask run
 ```
-
+Nesse momento a Biblioteca-API vai tá rodando na url `http://127.0.0.1:5000/`, pronta para receber as requisições. Para fazer o deploy e colocá-la online, verifique a documentação do seu provedor.
 
 ## EndPoints
 
