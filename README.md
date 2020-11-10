@@ -56,7 +56,7 @@ Para rodar essa API é necessário ter no seu computador instalado os seguintes 
     #Rodando API
     > flask run
 ```
-Nesse momento a Biblioteca-API vai tá rodando na url `http://127.0.0.1:5000/`, pronta para receber as requisições. Para fazer o deploy e colocá-la online, verifique a documentação do seu provedor.
+Nesse momento a Biblioteca-API vai tá rodando na url `http://127.0.0.1:5000/` pronta para receber as requisições locais. Para fazer o deploy e colocá-la online, verifique a documentação do provedor desejado.
 
 ## EndPoints
 
