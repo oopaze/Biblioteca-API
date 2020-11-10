@@ -16,7 +16,7 @@
 
 ## Sobre
 
-Esse projeto foi criado e desenvolvimento pelos alunos [José Pedro](https://github.com/oopaze), [Michael Pereira](https://github.com/MichaelPereira31) e [Alan Figueiredo](https://github.com/aemmanuel138) do Instituto Federal do Ceará para ser apresentado na disciplina de Algoritimos e Programação II do professor [Yuri Almeida Lacerda](https://github.com/yurilacerda).
+Esse projeto foi criado e desenvolvimento pelos alunos [José Pedro](https://github.com/oopaze), [Michael Pereira](https://github.com/MichaelPereira31) e [Alan Figueiredo](https://github.com/aemmanuel138) do Instituto Federal do Ceará para ser apresentado na disciplina de Algoritimos e Programação II do professor [Yuri Lacerda](https://github.com/yurilacerda).
 
 O Biblioteca-Fácil é uma API que permitirá auxiliar na gerência de pequenas bibliotecas diminuindo a utilização e preenchimento de protocolos de empréstimos, facilitando a gestão e melhorando a rotina diária com seus usuários. A idéia do  projeto é poder proporcionar aos usuários uma maior interação com o conteúdo disponível na biblioteca através de vários mecanismos de busca. 
 
