@@ -40,16 +40,18 @@ Por padrão a Biblioteca-Fácil usa SQLite3 como banco de dados, porém ela pode
 
 ## Instalação
 ```shell
-    #Baixando proeto
+    #Baixando projeto
     > git clone https://github.com/oopaze/Biblioteca-API.git
 
     #Entrando na pasta do projeto
     > cd Biblioteca-API
 
-    
     #Instalando dependências e criando banco
     Linux:   > source initialize.sh
     Windows: > initialize.bat
+
+    #Rodando API
+    > flask run
 ```
 
 
